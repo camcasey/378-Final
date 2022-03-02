@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         MoveSpeed = input * speed * Time.deltaTime;
         //fixes hold down key at start error
-        if(MoveSpeed.x <= 1 && MoveSpeed.y <= 1)
+        if(MoveSpeed.x <= 1 && MoveSpeed.y <= 1 && MoveSpeed.x >= -1 && MoveSpeed.y >= -1)
         {
             rb.MovePosition(rb.position + MoveSpeed);
         }
