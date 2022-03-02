@@ -236,15 +236,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: befd98d2fd551b9429e361a3401d1834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 8
-  rows: 8
+  columns: 24
+  rows: 24
   wallCount:
     minimum: 5
     maximum: 9
-  exit: {fileID: 0}
-  floorTiles: []
-  wallTiles: []
-  outerWallTiles: []
+  exit: {fileID: 1568360483623878144, guid: 44b612ddd4551694aa968bbf4818a00d, type: 3}
+  floorTiles:
+  - {fileID: 5887939083131837268, guid: 50ccf8a1c801fc343b0de6b31f5c0b64, type: 3}
+  - {fileID: 396903975825856195, guid: d49db46d43cccb74893f69789d9af510, type: 3}
+  wallTiles:
+  - {fileID: 1407288227292436914, guid: b072051be3afddb4187f4e21b5d5b2b8, type: 3}
+  - {fileID: 2723653308961358009, guid: 65cc479701c2c854fb9a1a943f6a1011, type: 3}
+  outerWallTiles:
+  - {fileID: 8637223938923486925, guid: 5eff05402dc08514fbaf2ebb254287a3, type: 3}
+  - {fileID: 2296869413178140162, guid: 9413112e1ec8cca4a87a0e4fb371537e, type: 3}
 --- !u!114 &651095344
 MonoBehaviour:
   m_ObjectHideFlags: 0
