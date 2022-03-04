@@ -10,23 +10,14 @@ public class Movement : MonoBehaviour
     float x,y;
     private Vector2 MoveSpeed;
     public GameObject hitbox;
-    public GameObject hitbox1;
-    public GameObject hitbox2;
-    public GameObject hitbox3;
     private int count = 0;
     private bool hit = false;
+    //private float cx, cy;
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         hitbox = this.gameObject.transform.GetChild(0).gameObject;
-        hitbox1 = this.gameObject.transform.GetChild(1).gameObject;
-        hitbox2 = this.gameObject.transform.GetChild(2).gameObject;
-        hitbox3 = this.gameObject.transform.GetChild(3).gameObject;
-        hitbox.GetComponent<BoxCollider2D>().enabled = false;
-        hitbox1.GetComponent<BoxCollider2D>().enabled = false;
-        hitbox2.GetComponent<BoxCollider2D>().enabled = false;
-        hitbox3.GetComponent<BoxCollider2D>().enabled = false;
         count = 0;
     }
     // Update is called once per frame
@@ -47,22 +38,26 @@ public class Movement : MonoBehaviour
         {
             rb.MovePosition(rb.position + MoveSpeed);
         }
+        Vector2 hitLocation = getHitboxLocation(mouse, transform.transform);
+        hitbox.transform.localPosition = new Vector3(hitLocation.x, hitLocation.y, 0);
+
         //dontRender(hitbox,hitbox1,hitbox2,hitbox3);
         if(Input.GetMouseButtonDown(0))
         {
-            GameObject hitbox0 = this.gameObject.transform.GetChild(getQuadrant(mouse,transform)).gameObject;
-            dontCollide(hitbox,hitbox1,hitbox2,hitbox3);
-            hitbox0.GetComponent<BoxCollider2D>().enabled = true;
-            dontRender(hitbox,hitbox1,hitbox2,hitbox3);
-            hitbox0.GetComponent<SpriteRenderer>().enabled = true;
+        //    GameObject hitbox0 = this.gameObject.transform.GetChild(getQuadrant(mouse,transform)).gameObject;
+        //    dontCollide(hitbox,hitbox1,hitbox2,hitbox3);
+        //    hitbox0.GetComponent<BoxCollider2D>().enabled = true;
+        //    dontRender(hitbox,hitbox1,hitbox2,hitbox3);
+            hitbox.GetComponent<SpriteRenderer>().enabled = true;
+            hitbox.GetComponent<CircleCollider2D>().enabled = true;
             print("Hit");
             count = 1;
             hit = true;
         }
         if(count % 100 == 0 && hit)
         {
-            dontCollide(hitbox,hitbox1,hitbox2,hitbox3);
-            dontRender(hitbox,hitbox1,hitbox2,hitbox3);
+            hitbox.GetComponent<CircleCollider2D>().enabled = false;
+            hitbox.GetComponent<SpriteRenderer>().enabled = false;
             hit = false;
         }
         if(count >= 100000)
@@ -82,6 +77,14 @@ public class Movement : MonoBehaviour
         if(mouse.x < t.position.x && mouse.y > t.position.y)
             return 3;
         return -1;
+    }
+    Vector2 getHitboxLocation(Vector2 mouse, Transform t)
+    {
+        float cx, cy;
+        cx = mouse.x - t.position.x;
+        cy = mouse.y - t.position.y;
+        float magnitude = Mathf.Sqrt(cx*cx + cy*cy);
+        return new Vector2(cx/magnitude, cy / magnitude);
     }
     void dontRender(GameObject one, GameObject two, GameObject three, GameObject four)
     {
