@@ -38,8 +38,11 @@ public class Movement : MonoBehaviour
         {
             rb.MovePosition(rb.position + MoveSpeed);
         }
-        Vector2 hitLocation = getHitboxLocation(mouse, transform.transform);
-        hitbox.transform.localPosition = new Vector3(hitLocation.x, hitLocation.y, 0);
+        if (hit == false)
+        {
+            Vector2 hitLocation = getHitboxLocation(mouse, transform.transform);
+            hitbox.transform.localPosition = new Vector3(hitLocation.x, hitLocation.y, 0);
+        }
 
         //dontRender(hitbox,hitbox1,hitbox2,hitbox3);
         if(Input.GetMouseButtonDown(0))
