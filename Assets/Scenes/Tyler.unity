@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb86d510bd1674448c40018e366d825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 75
   rb: {fileID: 1221235062}
   hitbox: {fileID: 1464069190}
 --- !u!212 &1221235060
