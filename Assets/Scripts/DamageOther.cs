@@ -23,12 +23,12 @@ public class DamageOther : MonoBehaviour
     //         Destroy(other);
     //     }
     // }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
         if(other.CompareTag("Enemy"))
         {
-            Destroy(other);
+            Destroy(other.transform.parent.gameObject);
         }
     }
 }
