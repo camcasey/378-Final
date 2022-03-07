@@ -69,18 +69,7 @@ public class Movement : MonoBehaviour
         }
         count++;
     }
-    int getQuadrant(Vector2 mouse, Transform t)
-    {
-        if(mouse.x > t.position.x && mouse.y > t.position.y)
-            return 0;
-        if(mouse.x > t.position.x && mouse.y < t.position.y)
-            return 1;
-        if(mouse.x < t.position.x && mouse.y < t.position.y)
-            return 2;
-        if(mouse.x < t.position.x && mouse.y > t.position.y)
-            return 3;
-        return -1;
-    }
+
     Vector2 getHitboxLocation(Vector2 mouse, Transform t)
     {
         float cx, cy;
