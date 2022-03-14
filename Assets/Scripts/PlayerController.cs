@@ -12,12 +12,17 @@ public class PlayerController : MonoBehaviour
     public GameObject hitbox;
     public GameObject remainingEnemy;
 
+    public HealthBarScript healthBar;
+    public int curHealth;
+    public int maxHealth = 100;
     private void Start()
     {
         Debug.Log(this.gameObject.tag);
         hitbox = this.gameObject.transform.GetChild(0).gameObject;
         CharacterController controller = this.gameObject.GetComponent<CharacterController>();
         controller.detectCollisions = true;
+        curHealth = maxHealth;
+        healthBar.setMaxHealth(curHealth);
     }
 
 
@@ -77,9 +82,6 @@ public class PlayerController : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -moveSpeed);
             spriteRenderer.sprite = sprites[1];
         }
-
-        
-
     }
     Vector2 getHitboxLocation(Vector2 mouse, Transform t)
     {
@@ -88,5 +90,15 @@ public class PlayerController : MonoBehaviour
         cy = mouse.y - t.position.y;
         float magnitude = Mathf.Sqrt(cx * cx + cy * cy);
         return new Vector2(cx / magnitude, cy / magnitude);
+    }
+
+    void TakeDamage(int damage){
+        curHealth -= damage;
+        healthBar.setHealth(curHealth);
+    }
+    public void enemyCollision(Collision2D other){
+        if(other.gameObject.tag == "Enemy"){
+            TakeDamage(5);
+        }
     }
 }
