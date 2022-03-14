@@ -82,6 +82,9 @@ public class PlayerController : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -moveSpeed);
             spriteRenderer.sprite = sprites[1];
         }
+        if(curHealth <= 0){
+            SceneManager.LoadScene("LoseMenu");
+        }
     }
     Vector2 getHitboxLocation(Vector2 mouse, Transform t)
     {
@@ -96,8 +99,9 @@ public class PlayerController : MonoBehaviour
         curHealth -= damage;
         healthBar.setHealth(curHealth);
     }
-    public void enemyCollision(Collision2D other){
-        if(other.gameObject.tag == "Enemy"){
+    void enemyCollision(Collision other){
+        if(other.gameObject.tag == "enemy"){
+            other.gameObject.SendMessage("ApplyDamage", 10);
             TakeDamage(5);
         }
     }
