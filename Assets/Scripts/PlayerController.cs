@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Sprite[] sprites;
     public GameObject hitbox;
     public GameObject remainingEnemy;
+    private int count = 0;
 
     public HealthBarScript healthBar;
     public int curHealth;
@@ -19,8 +20,8 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log(this.gameObject.tag);
         hitbox = this.gameObject.transform.GetChild(0).gameObject;
-        CharacterController controller = this.gameObject.GetComponent<CharacterController>();
-        controller.detectCollisions = true;
+        //CharacterController controller = this.gameObject.GetComponent<CharacterController>();
+        //controller.detectCollisions = true;
         curHealth = maxHealth;
         healthBar.setMaxHealth(curHealth);
     }
@@ -38,13 +39,12 @@ public class PlayerController : MonoBehaviour
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 hitLocation = getHitboxLocation(mouse, transform.transform);
         hitbox.transform.localPosition = new Vector3(hitLocation.x, hitLocation.y, 0);
-        if(hitbox.GetComponent<SpriteRenderer>().enabled == true){
-            hitbox.GetComponent<SpriteRenderer>().enabled = false;
-        }
 
-        if (hitbox.GetComponent<CircleCollider2D>().enabled == true)
+        if (hitbox.GetComponent<CircleCollider2D>().enabled == true && count % 10 == 0)
         {
             hitbox.GetComponent<CircleCollider2D>().enabled = false;
+            hitbox.GetComponent<SpriteRenderer>().enabled = false;
+
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -55,7 +55,8 @@ public class PlayerController : MonoBehaviour
             //    dontRender(hitbox,hitbox1,hitbox2,hitbox3);
             hitbox.GetComponent<SpriteRenderer>().enabled = true;
             hitbox.GetComponent<CircleCollider2D>().enabled = true;
-            print("Hit");
+            //print("Hit");
+            count = 0;
         }
 
 
@@ -85,6 +86,11 @@ public class PlayerController : MonoBehaviour
         if(curHealth <= 0){
             SceneManager.LoadScene("LoseMenu");
         }
+        if(count > 10000)
+        {
+            count = 0;
+        }
+        count++;
     }
     Vector2 getHitboxLocation(Vector2 mouse, Transform t)
     {
@@ -99,8 +105,10 @@ public class PlayerController : MonoBehaviour
         curHealth -= damage;
         healthBar.setHealth(curHealth);
     }
-    void enemyCollision(Collision other){
-        if(other.gameObject.tag == "enemy"){
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "enemy")
+        {
             other.gameObject.SendMessage("ApplyDamage", 10);
             TakeDamage(5);
         }
