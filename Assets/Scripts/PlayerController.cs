@@ -11,18 +11,20 @@ public class PlayerController : MonoBehaviour
     public Sprite[] sprites;
     public GameObject hitbox;
     public GameObject remainingEnemy;
-    private int count = 0;
+    private int count = 0, count2 = 0;
 
     public HealthBarScript healthBar;
-    public int curHealth;
+    public int curHealth = 100;
     public int maxHealth = 100;
+    public bool iframe = false;
+    public bool enemyPresent = false;
     private void Start()
     {
         Debug.Log(this.gameObject.tag);
         hitbox = this.gameObject.transform.GetChild(0).gameObject;
         //CharacterController controller = this.gameObject.GetComponent<CharacterController>();
         //controller.detectCollisions = true;
-        curHealth = maxHealth;
+        //curHealth = maxHealth;
         healthBar.setMaxHealth(curHealth);
     }
 
@@ -30,8 +32,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        /*if(enemyPresent && !iframe)
+        {
+            other.gameObject.SendMessage("ApplyDamage", 5);
+            TakeDamage(1);
+            iframe = true;
+            count2 = 0;
+        }
+        if(iframe && count2 % 100 == 0)
+        {
+            iframe = false;
+        }*/
+
         remainingEnemy = GameObject.FindWithTag("Enemy");
-        Debug.Log("remaining enemy = null?: " + remainingEnemy);
+        //Debug.Log("remaining enemy = null?: " + remainingEnemy);
         if(remainingEnemy == null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -44,7 +59,6 @@ public class PlayerController : MonoBehaviour
         {
             hitbox.GetComponent<CircleCollider2D>().enabled = false;
             hitbox.GetComponent<SpriteRenderer>().enabled = false;
-
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -90,7 +104,10 @@ public class PlayerController : MonoBehaviour
         {
             count = 0;
         }
+        if (count2 > 100000000) count2 = 0;
         count++;
+        count2++;
+        enemyPresent = false;
     }
     Vector2 getHitboxLocation(Vector2 mouse, Transform t)
     {
@@ -105,12 +122,12 @@ public class PlayerController : MonoBehaviour
         curHealth -= damage;
         healthBar.setHealth(curHealth);
     }
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.tag == "enemy")
+        if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.SendMessage("ApplyDamage", 10);
-            TakeDamage(5);
+            //enemyPresent = true;
+            TakeDamage(1);
         }
     }
 }

@@ -17,6 +17,8 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(tdirection);
+
         transform.position += tdirection * speed * Time.deltaTime;
 
     }

@@ -400,7 +400,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -443,7 +443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 374, y: 282}
+  m_AnchoredPosition: {x: 290.5, y: 266.9}
   m_SizeDelta: {x: 209.7022, y: 52.4188}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &450380415
@@ -655,8 +655,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.060200572, y: 1.3193979}
-  m_Size: {x: 1.8, y: 3}
+  m_Offset: {x: 0.060200572, y: 0.7193979}
+  m_Size: {x: 1.8, y: 1.8}
   m_Direction: 0
 --- !u!212 &662419960
 SpriteRenderer:
@@ -745,9 +745,11 @@ MonoBehaviour:
   - {fileID: 21300004, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
   hitbox: {fileID: 608185756}
   remainingEnemy: {fileID: 0}
-  healthBar: {fileID: 0}
-  curHealth: 0
+  healthBar: {fileID: 450380415}
+  curHealth: 100
   maxHealth: 100
+  iframe: 0
+  enemyPresent: 0
 --- !u!50 &662419964
 Rigidbody2D:
   serializedVersion: 4
