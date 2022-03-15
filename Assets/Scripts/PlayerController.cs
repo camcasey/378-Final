@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Sprite[] sprites;
     public GameObject hitbox;
     public GameObject remainingEnemy;
+    public Projectile projectile;
     private int count = 0, count2 = 0;
 
     public HealthBarScript healthBar;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 100;
     public bool iframe = false;
     public bool enemyPresent = false;
+    public bool canMove = true;
     private void Start()
     {
         Debug.Log(this.gameObject.tag);
@@ -72,30 +74,39 @@ public class PlayerController : MonoBehaviour
             //print("Hit");
             count = 0;
         }
-
-
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetMouseButtonDown(1) && canMove)
         {
-            
-        GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-            spriteRenderer.sprite = sprites[3];
-
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-            spriteRenderer.sprite = sprites[2];
+            projectile.direction = hitLocation;
+            //play wizard charging up sound here
+            canMove = false;
+            count2 = 1;
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (canMove)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, moveSpeed);
-            spriteRenderer.sprite = sprites[0];
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -moveSpeed);
-            spriteRenderer.sprite = sprites[1];
+            if (Input.GetKey(KeyCode.D))
+            {
+
+                GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+                spriteRenderer.sprite = sprites[3];
+
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+                spriteRenderer.sprite = sprites[2];
+            }
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, moveSpeed);
+                spriteRenderer.sprite = sprites[0];
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -moveSpeed);
+                spriteRenderer.sprite = sprites[1];
+            }
         }
         if(curHealth <= 0){
             SceneManager.LoadScene("LoseMenu");
@@ -104,7 +115,15 @@ public class PlayerController : MonoBehaviour
         {
             count = 0;
         }
-        if (count2 > 100000000) count2 = 0;
+        if (count2 > 10000)
+        {
+            count2 = 1;
+        }
+        if(count2 % 300 == 0 && canMove == false)
+        {
+            Instantiate(projectile, hitbox.transform.position, transform.rotation);
+            canMove = true;
+        }
         count++;
         count2++;
         enemyPresent = false;
