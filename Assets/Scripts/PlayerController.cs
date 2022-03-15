@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         }
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 hitLocation = getHitboxLocation(mouse, transform.transform);
-        hitbox.transform.localPosition = new Vector3(hitLocation.x, hitLocation.y, 0);
+        hitbox.transform.localPosition = new Vector3(hitLocation.x, hitLocation.y+.6f, 0);
 
         if (hitbox.GetComponent<CircleCollider2D>().enabled == true && count % 10 == 0)
         {
