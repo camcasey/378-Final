@@ -14,6 +14,11 @@ public class Movement : MonoBehaviour
     private bool hit = false;
     //private float cx, cy;
 
+    //new stuff
+    public Projectile projectile;
+    public Transform offset;
+
+    //end new stuff
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -32,6 +37,7 @@ public class Movement : MonoBehaviour
         // }
         Vector2 input = new Vector2(x,y);
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 hitLocation = getHitboxLocation(mouse, transform.transform);
         MoveSpeed = input * speed * Time.deltaTime;
         //fixes hold down key at start error
         if(MoveSpeed.x <= 1 && MoveSpeed.y <= 1 && MoveSpeed.x >= -1 && MoveSpeed.y >= -1)
@@ -40,7 +46,7 @@ public class Movement : MonoBehaviour
         }
         if (hit == false)
         {
-            Vector2 hitLocation = getHitboxLocation(mouse, transform.transform);
+            
             hitbox.transform.localPosition = new Vector3(hitLocation.x, hitLocation.y, 0);
         }
 
@@ -56,6 +62,13 @@ public class Movement : MonoBehaviour
             print("Hit");
             count = 1;
             hit = true;
+        }
+        else if(Input.GetMouseButtonDown(1))
+        {
+            projectile.direction = hitLocation;
+            //Vector3 dir = (this.transform.position - hitbox.transform.position).normalized;
+            //Quaternion quaternion = Quaternion.Euler(dir.x, dir.y, dir.z);
+            Instantiate(projectile,hitbox.transform.position, transform.rotation);
         }
         if(count % 100 == 0 && hit)
         {
