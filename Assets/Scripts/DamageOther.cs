@@ -5,10 +5,11 @@ using UnityEngine;
 public class DamageOther : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int score = 0;
+    public Manager manager;
+    public AudioSource hit;
     void Start()
     {
-        
+        hit = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,11 +28,22 @@ public class DamageOther : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject other = collision.gameObject;
-        if (other.CompareTag("Enemy"))
+        //Debug.Log("Hit");
+        if (other.CompareTag("Projectile") && gameObject.CompareTag("Enemy"))
         {
+            //t.Play();
+            manager.playSound = true;
+            Destroy(gameObject.transform.parent.gameObject);
+            manager.score += 10;
+
+        }
+        else if(other.tag == "Enemy")
+        {
+            hit.Play();
+            manager.score += 10;
             Destroy(other.transform.parent.gameObject);
-            score += 10;
+            
         }
     }
-    public int getScore(){return score;}
+
 }

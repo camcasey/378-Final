@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     public Vector3 tdirection;
     void Start()
     {
-        tdirection = new Vector3(direction.x, direction.y, 0);
+        tdirection = new Vector3(direction.x, direction.y, 0); 
     }
 
     // Update is called once per frame
@@ -28,11 +28,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.tag != "Player")
         {
             Destroy(gameObject);
+            
         }
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Destroy(collision.transform.parent.gameObject);
-        }
-        
     }
 }

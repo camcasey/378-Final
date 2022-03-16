@@ -20,6 +20,14 @@ public class enemy : MonoBehaviour
     void Update()
     {
         Vector3 direction = target.position - transform.position;
+        if(direction.x > 0)
+        {
+            renderer.flipX = true;
+        }
+        else
+        {
+            renderer.flipX = false;
+        }
         direction = direction.normalized;
         Vector3 velocity = direction * _moveSpeed;
         if(velocity.x > 0)
@@ -36,4 +44,5 @@ public class enemy : MonoBehaviour
     //{
     //    Debug.Log("hit");
     //}
+    
 }

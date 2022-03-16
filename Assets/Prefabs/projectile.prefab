@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 73bbf88023af9554aae85bfb998aeff0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,8 +100,9 @@ MonoBehaviour:
   x: 0
   y: 0
   speed: 4.5
-  direction: {x: -0.19144051, y: 0.9815042}
+  direction: {x: 0.7003663, y: 0.71378356}
   tdirection: {x: 0, y: 0, z: 0}
+  explosion: {fileID: 0}
 --- !u!58 &-1538491010333771565
 CircleCollider2D:
   m_ObjectHideFlags: 0
