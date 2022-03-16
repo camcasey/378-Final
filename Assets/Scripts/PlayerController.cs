@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1) && canMove)
         {
-            projectile.direction = hitLocation;
+            
             //play wizard charging up sound here
             canMove = false;
             count2 = 1;
@@ -121,6 +121,7 @@ public class PlayerController : MonoBehaviour
         }
         if(count2 % 300 == 0 && canMove == false)
         {
+            projectile.direction = hitLocation;
             Instantiate(projectile, hitbox.transform.position, transform.rotation);
             canMove = true;
         }
