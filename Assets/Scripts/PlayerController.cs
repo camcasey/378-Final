@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public GameObject hitbox;
     public GameObject remainingEnemy;
     private int count = 0, count2 = 0;
-
+    
     public HealthBarScript healthBar;
     public int curHealth = 100;
     public int maxHealth = 100;
@@ -130,4 +130,5 @@ public class PlayerController : MonoBehaviour
             TakeDamage(1);
         }
     }
+
 }
