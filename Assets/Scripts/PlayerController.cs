@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     public GameObject remainingEnemy;
     public Projectile projectile;
     private int count = 0, count2 = 0;
-    
+    public Manager manager;
+
     public HealthBarScript healthBar;
     public int curHealth = 100;
     public int maxHealth = 100;
@@ -109,6 +110,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         if(curHealth <= 0){
+
             SceneManager.LoadScene("LoseMenu");
         }
         if(count > 10000)
@@ -147,7 +149,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             //enemyPresent = true;
-            TakeDamage(1);
+            TakeDamage(manager.damage);
         }
     }
 
