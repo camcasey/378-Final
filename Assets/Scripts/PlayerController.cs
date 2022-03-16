@@ -152,4 +152,5 @@ public class PlayerController : MonoBehaviour
             TakeDamage(manager.damage);
         }
     }
+
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageOther : MonoBehaviour
 {
     // Start is called before the first frame update
+    private int score = 0;
     void Start()
     {
         
@@ -29,6 +30,8 @@ public class DamageOther : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Destroy(other.transform.parent.gameObject);
+            score += 10;
         }
     }
+    public int getScore(){return score;}
 }
