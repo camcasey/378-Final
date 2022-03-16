@@ -2736,9 +2736,10 @@ MonoBehaviour:
 
     - Use left-click to attack
 
+    - Use right-click
+    for projectile attack
 
-    - Kill all
-    the enemies to advance to the next level
+    - Kill all the enemies to advance to the next level
 
 
 '

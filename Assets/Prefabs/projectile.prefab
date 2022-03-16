@@ -102,7 +102,6 @@ MonoBehaviour:
   speed: 4.5
   direction: {x: 0.7003663, y: 0.71378356}
   tdirection: {x: 0, y: 0, z: 0}
-  explosion: {fileID: 0}
 --- !u!58 &-1538491010333771565
 CircleCollider2D:
   m_ObjectHideFlags: 0

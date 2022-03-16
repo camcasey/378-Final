@@ -32,11 +32,11 @@ public class enemy : MonoBehaviour
         Vector3 velocity = direction * _moveSpeed;
         if(velocity.x > 0)
         {
-            renderer.sprite = sprites[1];
+            //renderer.sprite = sprites[1];
         }
         if(velocity.x < 0)
         {
-            renderer.sprite = sprites[0];
+            //renderer.sprite = sprites[0];
         }
         _controller.Move(velocity * Time.deltaTime);
     }

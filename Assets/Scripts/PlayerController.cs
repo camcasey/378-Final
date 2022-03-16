@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource ouch;
     private void Start()
     {
+        manager = GameObject.Find("manager").GetComponent<Manager>();
         charge = this.GetComponent<AudioSource>();
         //shoot = this.GetComponent<AudioSource>();
 
@@ -105,7 +106,6 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.D))
             {
-
                 GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
                 spriteRenderer.sprite = sprites[3];
 
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
         {
             count3 = 1;
         }
-        if(count2 % 300 == 0 && canMove == false)
+        if(count2 % 25 == 0 && canMove == false)
         {
             shoot.Play();
             projectile.direction = hitLocation;

@@ -18,12 +18,33 @@ EditorBuildSettings:
     path: Assets/Scenes/Cam Test 2.unity
     guid: 6b84cab2e9cf44534bfbbd71844b5b3d
   - enabled: 1
+    path: Assets/Scenes/Cam Test 3.unity
+    guid: b9cf40fa5e3ec7e42b9e25cd1f6c44b4
+  - enabled: 1
+    path: Assets/Scenes/Cam Test 4.unity
+    guid: 0dd919f4ed60edf4c9cf3ccea65f106c
+  - enabled: 1
+    path: Assets/Scenes/Cam Test 5.unity
+    guid: d7616f6b3e5925940b2cd23d332f0e60
+  - enabled: 1
+    path: Assets/Scenes/Cam Test 6.unity
+    guid: 305183a474460d246bedb93a91efc764
+  - enabled: 1
+    path: Assets/Scenes/Cam Test 7.unity
+    guid: fab32c46c530479408b9dd1885160f9e
+  - enabled: 1
+    path: Assets/Scenes/Cam Test 8.unity
+    guid: 66efd9137a8310d429962c5ec9b35107
+  - enabled: 1
+    path: Assets/Scenes/Cam Test 9.unity
+    guid: 3079ce619823bbf499cf3e63ba88b4bf
+  - enabled: 1
+    path: Assets/Scenes/Cam Test 10.unity
+    guid: c6bb7d8889fe9a84791779caf08e4dac
+  - enabled: 1
     path: Assets/Scenes/WinMenu.unity
     guid: 2ad00c4b75f074558b703ba2695a6ebf
   - enabled: 1
     path: Assets/Scenes/LoseMenu.unity
     guid: 57021594a5b5f594393f4f64b4750ae6
-  - enabled: 0
-    path: Assets/Scenes/Tyler.unity
-    guid: 0c5298defa361634096d28ae31800f00
   m_configObjects: {}

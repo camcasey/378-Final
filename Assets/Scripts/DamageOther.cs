@@ -9,6 +9,7 @@ public class DamageOther : MonoBehaviour
     public AudioSource hit;
     void Start()
     {
+        manager = GameObject.Find("manager").GetComponent<Manager>();
         hit = this.GetComponent<AudioSource>();
     }
 
